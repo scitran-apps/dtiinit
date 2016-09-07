@@ -1,2 +1,4 @@
-# dtiinit
-Vistasoft mrDiffusion preprocessing pipeline
+## scitran-apps/dtiinit
+
+Build context for a [Flywheel Gear](https://github.com/flywheel-io/gears/tree/master/spec) that can preprocess diffusion data using the Vistasoft [dtiInit](https://github.com/vistalab/vistasoft/tree/master/mrDiffusion/dtiInit) pipeline.
+
