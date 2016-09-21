@@ -2,7 +2,7 @@
 # Builds the gear/container
 # The container can be exported using the export.sh script
 
-GEAR=scitran-apps/dtiinit
+GEAR=scitran/dtiinit
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 

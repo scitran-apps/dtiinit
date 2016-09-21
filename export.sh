@@ -2,10 +2,10 @@
 # Exports the container in the cwd.
 # The container can be exported once it's started with
 gear=dtiinit
-version=0.0.1
+version=0.1.0
 outname=$gear-$version.tar
 container=$gear
-image=scitran-apps/$gear
+image=scitran/$gear
 
 # Check if input was passed in.
 if [[ -n $1 ]]; then

@@ -3,7 +3,7 @@
 # Run dtiinit Gear
 # Built to flywheel-v0 spec.
 #
-CONTAINER="[scitran-apps/dtiinit]"
+CONTAINER="[scitran/dtiinit]"
 
 # Configure the ENV
 export FSLOUTPUTTYPE=NIFTI_GZ
@@ -26,10 +26,19 @@ if [[ ! -d "$OUTPUT_DIR" ]]
         exit 1
 fi
 
-# Do the work
+# Make the directories
 mkdir $WORK_DIR
+mkdir $JSON_DIR
+
+# Convert the config json to a dtiinit_params json file
+$FLYWHEEL_BASE/parse_config.py --input_file ${FLYWHEEL_BASE}/config.json --output_file ${JSON_DIR}/dtiInit-params.json --input_dir ${WORK_DIR} --output_dir ${OUTPUT_DIR}
+
+# Make sure the params file is saved with the output
+cp ${JSON_DIR}/dtiInit-params.json ${OUTPUT_DIR}
+
+# Do the work
 cp $NIFTI_DIR/* $BVEC_DIR/* $BVAL_DIR/* $JSON_DIR/* $WORK_DIR
-/usr/local/bin/dtiInit $WORK_DIR 2>&1 | tee $OUTPUT_DIR/dtiinit-log.txt
+/usr/local/bin/dtiInit $WORK_DIR 2>&1 | tee $OUTPUT_DIR/dtiInit-log.txt
 
 # Get a list of the files in the output directory
 outputs=$(find $OUTPUT_DIR/* -maxdepth 0 -type f)
@@ -47,4 +56,3 @@ if [[ -z $outputs ]]
 fi
 
 exit 0
-

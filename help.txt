@@ -1,6 +1,6 @@
 %
 % Read a JSON object, a JSON file, or a directory containing a json file
-% and run dtiInit inside of a docker container (scitran-apps/dtiinit).
+% and run dtiInit inside of a docker container (scitran/dtiinit).
 %
 %
 % INPUTS:
@@ -67,13 +67,13 @@
 %       dtiInit processing run (see INPUT section for JSON schema):
 %
 %       % Using a JSON file
-%        docker run --rm -ti -v `pwd`/input:/input -v `pwd`/output:/output scitran-apps/dtiinit /input/<JSON_filename>.json
+%        docker run --rm -ti -v `pwd`/input:/input -v `pwd`/output:/output scitran/dtiinit /input/<JSON_filename>.json
 %
 %       % Using a JSON string
-%        docker run --rm -ti -v `pwd`/input:/input -v `pwd`/output:/output scitran-apps/dtiinit '{"input_dir":"/input", "output_dir": "/output"}'
+%        docker run --rm -ti -v `pwd`/input:/input -v `pwd`/output:/output scitran/dtiinit '{"input_dir":"/input", "output_dir": "/output"}'
 %
 %       % Using a directory (in the container), containing a JSON (.json)
-%        docker run --rm -ti -v `pwd`/input:/input -v `pwd`/output:/output scitran-apps/dtiinit /input/
+%        docker run --rm -ti -v `pwd`/input:/input -v `pwd`/output:/output scitran/dtiinit /input/
 %
 %
 %

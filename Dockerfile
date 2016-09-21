@@ -41,7 +41,8 @@ RUN chmod +x ${FLYWHEEL}/run
 COPY manifest.json ${FLYWHEEL}/manifest.json
 ADD https://raw.githubusercontent.com/scitran/utilities/daf5ebc7dac6dde1941ca2a6588cb6033750e38c/metadata_from_gear_output.py ${FLYWHEEL}/metadata_create.py
 RUN chmod +x ${FLYWHEEL}/metadata_create.py
+COPY parse_config.py ${FLYWHEEL}/parse_config.py
+RUN chmod +x ${FLYWHEEL}/parse_config.py
 
 # Configure entrypoint
 ENTRYPOINT ["/flywheel/v0/run"]
-
