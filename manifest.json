@@ -7,7 +7,7 @@
     "source": "https://github.com/scitran-apps/dtiinit",
     "license": "GPL-2.0",
     "flywheel": "0",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "inputs": {
         "nifti": {
             "base": "file",
