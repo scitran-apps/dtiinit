@@ -18,7 +18,6 @@ INPUT_DIR=$FLYWHEEL_BASE/input
 NIFTI_DIR=$INPUT_DIR/nifti
 BVEC_DIR=$INPUT_DIR/bvec
 BVAL_DIR=$INPUT_DIR/bval
-JSON_DIR=$INPUT_DIR/json
 WORK_DIR=$INPUT_DIR/work
 
 # Ensure there is an output directory
@@ -30,16 +29,19 @@ fi
 
 # Make the directories
 mkdir $WORK_DIR
-mkdir $JSON_DIR
 
 # Convert the config json to a dtiinit_params json file
-$FLYWHEEL_BASE/parse_config.py --input_file ${FLYWHEEL_BASE}/config.json --output_file ${JSON_DIR}/dtiInit-params.json --input_dir ${WORK_DIR} --output_dir ${OUTPUT_DIR}
+$FLYWHEEL_BASE/parse_config.py \
+    --input_file ${FLYWHEEL_BASE}/config.json \
+    --output_file ${WORK_DIR}/dtiInit-params.json \
+    --input_dir ${WORK_DIR} \
+    --output_dir ${OUTPUT_DIR} \
+    --bvec_dir ${BVEC_DIR} \
+    --bval_dir ${BVAL_DIR} \
+    --nifti_dir ${NIFTI_DIR}
 
 # Make sure the params file is saved with the output
-cp ${JSON_DIR}/dtiInit-params.json ${OUTPUT_DIR}
-
-# Move files into work directory and do the work
-mv $NIFTI_DIR/* $BVEC_DIR/* $BVAL_DIR/* $JSON_DIR/* $WORK_DIR
+cp ${WORK_DIR}/dtiInit-params.json ${OUTPUT_DIR}
 
 # Execute the algorithm
 /usr/local/bin/dtiInit $WORK_DIR 2>&1 | tee $OUTPUT_DIR/dtiInit-log.txt
