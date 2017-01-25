@@ -53,7 +53,7 @@ RUN mkdir -p ${FLYWHEEL}
 COPY source/bin/run \
     source/bin/parse_config.py \
     manifest.json \
-    ${FLYWHEEL}
+    ${FLYWHEEL}/
 RUN chmod +x \
     ${FLYWHEEL}/run \
     ${FLYWHEEL}/parse_config.py
