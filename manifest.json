@@ -8,9 +8,9 @@
     "source": "https://github.com/scitran-apps/dtiinit",
     "license": "GPL-2.0",
     "flywheel": "0",
-    "version": "0.1.3",
+    "version": "v0.2.0",
     "custom": {
-      "docker-image": "scitran/dtiinit:v0.1.3"
+      "docker-image": "scitran/dtiinit:v0.2.0"
     },
     "inputs": {
         "nifti": {
