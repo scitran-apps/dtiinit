@@ -21,11 +21,10 @@
             "phaseEncodeDir": "",
             "dwOutMm": [2, 2, 2],
             "rotateBvecsWithRx": 0,
-            "rotateBvecsWithCanXform": 0,
+            "rotateBvecsWithCanXform": 1,
             "bvecsFile": "",
             "bvalsFile": "",
             "noiseCalcMethod": "b0",
             "outDir": ""
         }
 }
-

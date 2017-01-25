@@ -1,14 +1,17 @@
 {
     "name": "dtiinit",
-    "label": "Diffusion Data Initialization Pipeline",
-    "description": "dtiInit (DTI Initialization) runs the VISTASOFT/mrDiffusion pre-processing pipeline on raw DWI data. See: http://white.stanford.edu/newlm/index.php/DTI_Preprocessing for more information regarding the pipeline. This dtiInit gear will output motion-corrected diffusion data (nifti, bval, bvecs) aligned to the first b0 image in the acquisition. It will also calculate FA, MD, RD, and AD maps. Tensors, vector RGB, brain mask, white-matter mask, and white-matter probability maps will also be output. All outputs will be included in a zip file.",
+    "label": "VISTASOFT: dtiInit - Diffusion Data Initialization Pipeline",
+    "description": "dtiInit (DTI Initialization) runs the VISTASOFT/mrDiffusion pre-processing pipeline on raw DWI data. This dtiInit gear will output motion-corrected diffusion data (nifti, bval, bvecs) aligned to the first b0 image in the acquisition. It will also calculate FA, MD, RD, and AD maps. Tensors, vector RGB, brain mask, white-matter mask, and white-matter probability maps will also be output. All outputs will be included in a zip file. See: http://web.stanford.edu/group/vista/cgi-bin/wiki/index.php/DTI_Preprocessing for more information regarding the pipeline.",
     "maintainer": "Michael Perry <lmperry@stanford.edu>",
     "author": "Stanford VISTA Lab",
     "url": "https://github.com/vistalab/vistasoft/wiki",
     "source": "https://github.com/scitran-apps/dtiinit",
     "license": "GPL-2.0",
     "flywheel": "0",
-    "version": "0.1.2",
+    "version": "0.1.3",
+    "custom": {
+      "docker-image": "scitran/dtiinit:v0.1.3"
+    },
     "inputs": {
         "nifti": {
             "base": "file",
@@ -93,7 +96,7 @@
         },
         "rotateBvecsWithCanXform": {
             "description": "Rotate the b-vectors according to the canonical xForm. 0 = false, 1 = true",
-            "default": 0,
+            "default": 1,
             "type": "integer"
         },
         "noiseCalcMethod": {
