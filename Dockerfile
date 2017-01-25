@@ -1,5 +1,6 @@
 # Create Flywheel Gear that can run dtiInit
-# See https://github.com/vistalab/vistasoft/raw/97aa8a8/mrDiffusion/dtiInit/standalone for source code
+# For source code see:
+#   https://github.com/vistalab/vistasoft/raw/97aa8a8/mrDiffusion/dtiInit/standalone
 #
 
 FROM ubuntu:trusty
@@ -36,7 +37,7 @@ ADD https://github.com/vistalab/vistasoft/raw/97aa8a82/mrDiffusion/templates/MNI
 ADD https://github.com/vistalab/vistasoft/raw/97aa8a82/mrDiffusion/dtiInit/standalone/dtiInitStandAloneJsonSchema.json /templates/
 
 # Copy the help text to display when no args are passed in.
-COPY help.txt /opt/help.txt
+COPY source/doc/help.txt /opt/help.txt
 
 # Ensure that the executable files are executable
 RUN chmod +x /usr/local/bin/bet2 && chmod +x /usr/local/bin/dtiInit
@@ -49,11 +50,13 @@ ENV FLYWHEEL /flywheel/v0
 RUN mkdir -p ${FLYWHEEL}
 
 # Copy and configure run script and metadata code
-COPY run ${FLYWHEEL}/run
-RUN chmod +x ${FLYWHEEL}/run
-COPY manifest.json ${FLYWHEEL}/manifest.json
-COPY parse_config.py ${FLYWHEEL}/parse_config.py
-RUN chmod +x ${FLYWHEEL}/parse_config.py
+COPY source/bin/run \
+    source/bin/parse_config.py \
+    manifest.json \
+    ${FLYWHEEL}
+RUN chmod +x \
+    ${FLYWHEEL}/run \
+    ${FLYWHEEL}/parse_config.py
 
 # Configure entrypoint
 ENTRYPOINT ["/flywheel/v0/run"]
