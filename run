@@ -56,7 +56,6 @@ if [[ -z $outputs ]]
         exit 1
     else
         cd $OUTPUT_DIR
-        $FLYWHEEL_BASE/metadata_create.py $OUTPUT_DIR $CONTAINER
         echo -e "$CONTAINER  Wrote: `ls`"
         echo -e "$CONTAINER  Done!"
 fi
