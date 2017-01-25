@@ -30,11 +30,11 @@ RUN mkdir /opt/mcr && \
 ADD https://github.com/vistalab/vistasoft/raw/97aa8a8/mrDiffusion/dtiInit/standalone/executables/dtiInit_glnxa64_v82 /usr/local/bin/dtiInit
 
 # Add bet2 (FSL) to the container
-ADD https://github.com/vistalab/vistasoft/raw/97aa8a82/mrAnatomy/Segment/bet2 /usr/local/bin/
+ADD https://github.com/vistalab/vistasoft/raw/97aa8a8/mrAnatomy/Segment/bet2 /usr/local/bin/
 
 # Add the MNI_EPI template and JSON schema files to the container
-ADD https://github.com/vistalab/vistasoft/raw/97aa8a82/mrDiffusion/templates/MNI_EPI.nii.gz /templates/
-ADD https://github.com/vistalab/vistasoft/raw/97aa8a82/mrDiffusion/dtiInit/standalone/dtiInitStandAloneJsonSchema.json /templates/
+ADD https://github.com/vistalab/vistasoft/raw/97aa8a8/mrDiffusion/templates/MNI_EPI.nii.gz /templates/
+ADD https://github.com/vistalab/vistasoft/raw/97aa8a8/mrDiffusion/dtiInit/standalone/dtiInitStandAloneJsonSchema.json /templates/
 
 # Copy the help text to display when no args are passed in.
 COPY source/doc/help.txt /opt/help.txt
