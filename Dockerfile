@@ -49,7 +49,7 @@ ENV FSLOUTPUTTYPE NIFTI_GZ
 ENV FLYWHEEL /flywheel/v0
 RUN mkdir -p ${FLYWHEEL}
 
-# Copy and configure run script and metadata code
+# Copy and configure code
 COPY source/bin/run \
     source/bin/parse_config.py \
     manifest.json \
