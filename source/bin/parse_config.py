@@ -8,7 +8,7 @@ def parse_config(input_file, output_file, input_dir, output_dir, nifti_dir, bvec
     import shutil
 
     if not os.path.isfile(input_file):
-        manifest = "/flwyheel/v0/manifest.json"
+        manifest = "/flywheel/v0/manifest.json"
         input_file = manifest
         MANIFEST=True
     else:
@@ -23,7 +23,8 @@ def parse_config(input_file, output_file, input_dir, output_dir, nifti_dir, bvec
         manifest_config = dict.fromkeys(config['config'].keys())
         for k in manifest_config.iterkeys():
             manifest_config[k] = config['config'][k]['default']
-            config['params'] = manifest_config
+        config = dict()
+        config['params'] = manifest_config
     else:
         # Rename the config key to params
         config['params'] = config.pop('config')
