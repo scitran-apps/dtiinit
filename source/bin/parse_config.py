@@ -7,12 +7,27 @@ def parse_config(input_file, output_file, input_dir, output_dir, nifti_dir, bvec
     import glob
     import shutil
 
+    if not os.path.isfile(input_file):
+        manifest = "/flywheel/v0/manifest.json"
+        input_file = manifest
+        MANIFEST=True
+    else:
+        MANIFEST=False
+
     # Read the config json file
     with open(input_file, 'r') as jsonfile:
         config = json.load(jsonfile)
 
-    # Rename the config key to params
-    config['params'] = config.pop('config')
+    if MANIFEST:
+        print "Loading default configuration from manifest.json"
+        manifest_config = dict.fromkeys(config['config'].keys())
+        for k in manifest_config.iterkeys():
+            manifest_config[k] = config['config'][k]['default']
+        config = dict()
+        config['params'] = manifest_config
+    else:
+        # Rename the config key to params
+        config['params'] = config.pop('config')
 
     # Combine to build the dwOutMm array ( This can be removed once support for arrays is added in the schema. )
     dwOutMm = [config['params']['dwOutMm-1'], config['params']['dwOutMm-2'], config['params']['dwOutMm-3']]

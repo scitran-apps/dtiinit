@@ -41,10 +41,10 @@ $FLYWHEEL_BASE/parse_config.py \
     --nifti_dir ${NIFTI_DIR}
 
 # Make sure the params file is saved with the output
-cp ${WORK_DIR}/dtiInit-params.json ${OUTPUT_DIR}
+cp ${WORK_DIR}/dtiInit_params.json ${OUTPUT_DIR}
 
 # Execute the algorithm
-/usr/local/bin/dtiInit $WORK_DIR 2>&1 | tee $OUTPUT_DIR/dtiInit-log.txt
+/usr/local/bin/dtiInit $WORK_DIR 2>&1 | tee $OUTPUT_DIR/dtiInit_log.log
 
 # Get a list of the files in the output directory
 outputs=$(find $OUTPUT_DIR/* -maxdepth 0 -type f)
@@ -56,7 +56,6 @@ if [[ -z $outputs ]]
         exit 1
     else
         cd $OUTPUT_DIR
-        $FLYWHEEL_BASE/metadata_create.py $OUTPUT_DIR $CONTAINER
         echo -e "$CONTAINER  Wrote: `ls`"
         echo -e "$CONTAINER  Done!"
 fi
