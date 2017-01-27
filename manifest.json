@@ -14,6 +14,7 @@
     },
     "inputs": {
         "nifti": {
+            "description": "Raw diffusion NIfTI file.",
             "base": "file",
             "type": {
                 "enum": [
@@ -22,6 +23,7 @@
             }
         },
         "bvec": {
+            "description": "File contianing a list of diffusion b-vectors.",
             "base": "file",
             "type": {
                 "enum": [
@@ -30,6 +32,7 @@
             }
         },
         "bval": {
+            "description": "File containing a list of diffusion b-values.",
             "base": "file",
             "type": {
                 "enum": [
