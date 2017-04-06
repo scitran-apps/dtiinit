@@ -16,7 +16,7 @@
     "anatomical": {
       "description": "OPTIONAL: Anatomical (e.g., t1-weighted) NIfTI file. During the inital phase of processing the diffusion data (b=0 images) will be aligned to this image. By default the dwi data will be aligned to the MNI_EPI template.",
       "base": "file",
-      "optional": "true",
+      "optional": true,
       "type": {
         "enum": [
           "nifti"
