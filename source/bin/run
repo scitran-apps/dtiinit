@@ -15,10 +15,12 @@ export XAPPLRESDIR=/opt/mcr/v82/X11/app-defaults
 FLYWHEEL_BASE=/flywheel/v0
 OUTPUT_DIR=$FLYWHEEL_BASE/output
 INPUT_DIR=$FLYWHEEL_BASE/input
-NIFTI_DIR=$INPUT_DIR/nifti
+NIFTI_DIR=$INPUT_DIR/dwi
+ANAT_DIR=$INPUT_DIR/anatomical
 BVEC_DIR=$INPUT_DIR/bvec
 BVAL_DIR=$INPUT_DIR/bval
 WORK_DIR=$INPUT_DIR/work
+PARAMS_FILE=$WORK_DIR/dtiInit.json
 
 # Ensure there is an output directory
 if [[ ! -d "$OUTPUT_DIR" ]]
@@ -33,18 +35,19 @@ mkdir $WORK_DIR
 # Convert the config json to a dtiinit_params json file
 $FLYWHEEL_BASE/parse_config.py \
     --input_file ${FLYWHEEL_BASE}/config.json \
-    --output_file ${WORK_DIR}/dtiInit-params.json \
+    --output_file ${PARAMS_FILE} \
     --input_dir ${WORK_DIR} \
     --output_dir ${OUTPUT_DIR} \
     --bvec_dir ${BVEC_DIR} \
     --bval_dir ${BVAL_DIR} \
-    --nifti_dir ${NIFTI_DIR}
+    --nifti_dir ${NIFTI_DIR} \
+    --anat_dir ${ANAT_DIR}
 
 # Make sure the params file is saved with the output
-cp ${WORK_DIR}/dtiInit_params.json ${OUTPUT_DIR}
+cp ${PARAMS_FILE} ${OUTPUT_DIR}
 
 # Execute the algorithm
-/usr/local/bin/dtiInit $WORK_DIR 2>&1 | tee $OUTPUT_DIR/dtiInit_log.log
+/usr/local/bin/dtiInit $WORK_DIR 2>&1 | tee $OUTPUT_DIR/dtiInit.log
 
 # Get a list of the files in the output directory
 outputs=$(find $OUTPUT_DIR/* -maxdepth 0 -type f)
