@@ -4,7 +4,7 @@
   "description": "dtiInit (DTI Initialization) runs the VISTASOFT/mrDiffusion pre-processing pipeline on raw DWI data. This dtiInit gear will output motion-corrected diffusion data (nifti, bval, bvecs) aligned to the first b0 image in the acquisition. It will also calculate FA, MD, RD, and AD maps. Tensors, vector RGB, brain mask, white-matter mask, and white-matter probability maps will also be output. All outputs will be included in a zip file. See: http://web.stanford.edu/group/vista/cgi-bin/wiki/index.php/DTI_Preprocessing for more information regarding the pipeline.",
   "maintainer": "Michael Perry <lmperry@stanford.edu>",
   "author": "Stanford VISTA Lab",
-  "url": "https://github.com/vistalab/vistasoft/wiki",
+  "url": "https://github.com/vistalab/vistasoft/wiki/dwi-Initialization",
   "source": "https://github.com/scitran-apps/dtiinit",
   "license": "GPL-2.0",
   "flywheel": "0",
