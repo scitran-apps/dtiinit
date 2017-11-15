@@ -16,18 +16,23 @@ def parse_config(input_file, output_file, input_dir, output_dir, nifti_dir, bvec
 
     # Read the config json file
     with open(input_file, 'r') as jsonfile:
-        config = json.load(jsonfile)
+        config_json = json.load(jsonfile)
 
     if MANIFEST:
-        print "Loading default configuration from manifest.json"
-        manifest_config = dict.fromkeys(config['config'].keys())
+        print "Loading default configuration from %s" % input_file
+        manifest_config = dict.fromkeys(config_json['config'].keys())
         for k in manifest_config.iterkeys():
-            manifest_config[k] = config['config'][k]['default']
+            manifest_config[k] = config_json['config'][k]['default']
         config = dict()
         config['params'] = manifest_config
     else:
         # Rename the config key to params
-        config['params'] = config.pop('config')
+        print "Parsing %s" % input_file
+        config = dict()
+        if config_json['config'].has_key('config'):
+            config['params'] = config_json['config']['config']
+        else:
+            config['params'] = config_json['config']
 
     # Combine to build the dwOutMm array ( This can be removed once support for arrays is added in the schema. )
     dwOutMm = [config['params']['dwOutMm-1'], config['params']['dwOutMm-2'], config['params']['dwOutMm-3']]

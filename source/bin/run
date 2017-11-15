@@ -19,7 +19,7 @@ NIFTI_DIR=$INPUT_DIR/dwi
 ANAT_DIR=$INPUT_DIR/anatomical
 BVEC_DIR=$INPUT_DIR/bvec
 BVAL_DIR=$INPUT_DIR/bval
-WORK_DIR=$INPUT_DIR/work
+WORK_DIR=/tmp/`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1`
 PARAMS_FILE=$WORK_DIR/dtiInit.json
 
 # Ensure there is an output directory
@@ -47,15 +47,15 @@ $FLYWHEEL_BASE/parse_config.py \
 cp ${PARAMS_FILE} ${OUTPUT_DIR}
 
 # Execute the algorithm
-/usr/local/bin/dtiInit $WORK_DIR 2>&1 | tee $OUTPUT_DIR/dtiInit.log
+time /usr/local/bin/dtiInit $WORK_DIR 2>&1 | tee $OUTPUT_DIR/dtiInit.log
 
-# Get a list of the files in the output directory
-outputs=$(find $OUTPUT_DIR/* -maxdepth 0 -type f)
+# Check for the output zip file
+outputs=$(find $OUTPUT_DIR/* -maxdepth 0 -type f -name "*.zip")
 
 # If outputs exist, generate metadata, and exit
 if [[ -z $outputs ]]
     then
-        echo "$CONTAINER  No results found in output directory... Exiting"
+        echo "$CONTAINER  Errors encountered: Results not found in output directory... Preserving log/config and exiting(1)!"
         exit 1
     else
         cd $OUTPUT_DIR

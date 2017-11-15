@@ -3,7 +3,8 @@
 #   https://github.com/vistalab/vistasoft/raw/97aa8a8/mrDiffusion/dtiInit/standalone
 #
 
-FROM ubuntu:trusty
+# FROM ubuntu:trusty
+FROM flywheel/matlab-mcr:v82
 MAINTAINER Michael Perry <lmperry@stanford.edu>
 
 # Install dependencies
@@ -15,16 +16,6 @@ RUN apt-get -qq update && apt-get -qq install -y \
     zip \
     gzip \
     python
-
-# Download the MCR from Mathworks and silently install it
-RUN mkdir /opt/mcr && \
-    mkdir /mcr-install && \
-    cd /mcr-install && \
-    wget -nv http://www.mathworks.com/supportfiles/downloads/R2013b/deployment_files/R2013b/installers/glnxa64/MCR_R2013b_glnxa64_installer.zip && \
-    unzip MCR_R2013b_glnxa64_installer.zip && \
-    ./install -destinationFolder /opt/mcr -agreeToLicense yes -mode silent && \
-    cd / && \
-    rm -rf /mcr-install
 
 # ADD the dtiInit Matlab Stand-Alone (MSA) into the container.
 ADD https://github.com/vistalab/vistasoft/raw/97aa8a8/mrDiffusion/dtiInit/standalone/executables/dtiInit_glnxa64_v82 /usr/local/bin/dtiInit
