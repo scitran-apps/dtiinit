@@ -4,13 +4,38 @@
   "description": "VISTALAB's dtiInit (DTI Initialization) runs the VISTASOFT/mrDiffusion pre-processing pipeline on raw DWI data. This Gear allows all dtiInit parameters to be set from within the configuration UI. All outputs are archived in a zip file for easy download. dtiInit.json is saved for easy reference to configuration parameters used at runtime.",
   "maintainer": "Michael Perry <lmperry@stanford.edu>",
   "author": "VISTA Lab, Stanford University",
-  "url": "https://github.com/vistalab/vistasoft/wiki/dwi-Initialization",
-  "source": "https://github.com/scitran-apps/dtiinit",
+  "url": "https://github.com/scitran-apps/dtiinit",
+  "source": "https://github.com/vistalab/vistasoft/wiki/dwi-Initialization",
   "license": "GPL-2.0",
   "flywheel": "0",
   "version": "0.2.2",
   "custom": {
-    "docker-image": "scitran/dtiinit:v0.2.2"
+    "docker-image": "scitran/dtiinit:v0.2.2",
+    "gear-builder": {
+      "category": "analysis"
+    },
+    "flywheel": {
+      "classification": {
+        "species": [
+          "Phantom",
+          "Human",
+          "Animal"
+        ],
+        "organ": [
+          "Any"
+        ],
+        "therapeutic_area": [
+          "Any"
+        ],
+        "modality": [
+          "MR"
+        ],
+        "function": [
+          "Image Processing - Diffusion"
+        ]
+      },
+      "suite": "Image Processing"
+    }
   },
   "inputs": {
     "anatomical": {
@@ -119,3 +144,4 @@
     }
   }
 }
+
