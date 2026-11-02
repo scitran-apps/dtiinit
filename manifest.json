@@ -10,9 +10,9 @@
   "flywheel": "0",
   "version": "0.2.2",
   "custom": {
-    "docker-image": "scitran/dtiinit:v0.2.2",
     "gear-builder": {
-      "category": "analysis"
+      "category": "analysis",
+      "docker-image": "scitran/dtiinit:v0.2.2"
     },
     "flywheel": {
       "classification": {
